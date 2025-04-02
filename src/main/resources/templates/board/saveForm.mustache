@@ -5,6 +5,7 @@
         <div class="card-header"><b>익명 글쓰기 화면입니다</b></div>
         <div class="card-body">
             <form action="#">
+                <input type="hidden" id="boardId" value="id">
                 <div class="mb-3">
                     <input type="text" class="form-control" placeholder="Enter author" id="author">
                 </div>
@@ -14,13 +15,35 @@
                 <div class="mb-3">
                     <textarea class="form-control" rows="5" id="content"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary form-control">글쓰기완료</button>
+                <button type="button" onclick="writeBoard()" class="btn btn-primary form-control">글쓰기완료</button>
             </form>
         </div>
     </div>
 </div>
 
 <script>
+
+    async function writeBoard() {
+
+        //1.id 값 찾아서 requestbody 오브젝트에 넣기
+        let requestBody = {
+            author: document.querySelector("#author").value,
+            title: document.querySelector("#title").value,
+            content: document.querySelector("#content").value
+        };
+
+        // 2. fetch post 요청하기
+        let response = await fetch("/api/boards", {
+            method: "post",
+            body: JSON.stringify(requestBody),
+            headers: {"Content-Type": "application/json"}
+        });
+        let responseBody = await response.json();
+        console.log(responseBody);
+        
+        //3.마지막에 아래 코드로 페이지 이동하기
+        location.href = "/";
+    }
 
 </script>
 
