@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header"><b>익명 글쓰기 화면입니다</b></div>
         <div class="card-body">
-            <form action="#">
+            <form action="#" method="post" enctype="application/x-www-form-urlencoded">
                 <input type="hidden" id="boardId" value="id">
                 <div class="mb-3">
                     <input type="text" class="form-control" placeholder="Enter author" id="author">
@@ -40,7 +40,7 @@
         });
         let responseBody = await response.json();
         console.log(responseBody);
-        
+
         //3.마지막에 아래 코드로 페이지 이동하기
         location.href = "/";
     }
