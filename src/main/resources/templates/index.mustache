@@ -20,6 +20,14 @@
 </div>
 
 <script>
+    async function deleteBoard(boardId) {
+        let response = await fetch("/api/boards/" + boardId, {method: "delete"});
+        let responseBody = await response.json();
+
+        console.log(responseBody);
+
+        location.reload();// 새로고침
+    }
 
 
     // 책임 : 컴퍼넌트 생성
